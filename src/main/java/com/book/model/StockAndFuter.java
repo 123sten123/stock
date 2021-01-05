@@ -5,7 +5,7 @@ import java.sql.Time;
 import java.util.Date;
 
 @Entity
-@Table(name = "stock")
+//@Table(name = "stock")
 public class StockAndFuter {
 
     @Id
