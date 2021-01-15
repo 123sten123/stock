@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -6,23 +7,68 @@
 <head>
     <title>Index Page</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.js"></script>
-    <script type="text/javascript" src="../dist/i18n/i18n.en.js"></script>
-
+<%--    <script type="text/javascript" src="../../resources/dist/i18n/i18n.en.js"></script>--%>
+    <script src="<c:url value="/resources/dist/i18n/i18n.en.js" />"></script>
     <link rel="stylesheet" href="http://iguanacharts.com/iguana_charts/dependencies/uikit/css/uikit.min.css" media="all">
     <link rel="stylesheet" href="http://iguanacharts.com/iguana_charts/dependencies/jquery.qtip.min.css" media="all">
     <link rel="stylesheet" href="http://iguanacharts.com/iguana_charts/dependencies/jquery-minicolors/jquery.minicolors.css" media="all">
 
-    <link rel="stylesheet" href="../dist/iguanachart.css" media="all">
+<%--    <link rel="stylesheet" href="../../resources/dist/iguanachart.css" media="all">--%>
+    <link rel="stylesheet" href="<c:url value="/resources/dist/iguanachart.css"/>" media="all">
+
+    <script type="text/javascript">
+        require.config({
+            paths: {
+                jquery: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min',
+                uikit: 'http://iguanacharts.com/iguana_charts/dependencies/uikit/js/uikit.min',
+                'jquery.eventmove': 'http://iguanacharts.com/iguana_charts/dependencies/jquery.event.move',
+                'jquery.hammer': 'http://iguanacharts.com/iguana_charts/dependencies/jquery.hammer',
+                'jsrender': "http://iguanacharts.com/iguana_charts/dependencies/jsrender.min",
+                'jquery.minicolors': 'http://iguanacharts.com/iguana_charts/dependencies/jquery-minicolors/jquery.minicolors.min',
+                'jquery.qtip': 'http://iguanacharts.com/iguana_charts/dependencies/jquery.qtip.min',
+                //'jquery.easing': 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min',
+                'jquery.mousewheel': 'https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min',
+                'iguanachart': '../dist/iguanachart',
+                'hammerjs': 'http://iguanacharts.com/iguana_charts/dependencies/hammer.min'
+            },
+            shim: {
+                'uikit': {
+                    deps: [
+                        'jquery'
+                    ]
+                },
+                jsrender: {
+                    deps: [
+                        'jquery'
+                    ]
+                },
+                iguanachart: {
+                    deps: [
+                        'jquery',
+                        'uikit',
+                        'jquery.eventmove',
+                        'jquery.hammer',
+                        'jsrender',
+                        'jquery.minicolors',
+                        'jquery.qtip',
+                        //'jquery.easing',
+                        'jquery.mousewheel'
+                    ]
+                }
+            }
+        })
+    </script>
+
 </head>
 
 <body>
-<spring:form method="post"  modelAttribute="userJSP" action="check-user">
+<%--<spring:form method="post"  modelAttribute="userJSP" action="check-user">--%>
 
-    Name: <spring:input path="name"/> (path="" - указывает путь, используемый в modelAttribute=''. в нашем случае User.name)  <br/>
-    Password: <spring:input path="password"/>   <br/>
-    <spring:button>Next Page</spring:button>
+<%--    Name: <spring:input path="name"/> (path="" - указывает путь, используемый в modelAttribute=''. в нашем случае User.name)  <br/>--%>
+<%--    Password: <spring:input path="password"/>   <br/>--%>
+<%--    <spring:button>Next Page</spring:button>--%>
 
-</spring:form>
+<%--</spring:form>--%>
 
 
 <script type="text/javascript">
@@ -65,6 +111,8 @@
         dataSource: chartDataSource
     });
 </script>
+
+
 
 <div id="iChart" style="height: 500px; position: relative;"></div>
 
